@@ -1,0 +1,48 @@
+{
+  "behaviors": {
+    "UnitBehavior": {
+      "scriptId": "7",
+      "line": 8,
+      "parentBehavior": null,
+      "properties": [
+        {
+          "name": "unitString",
+          "type": "string"
+        },
+        {
+          "name": "team",
+          "type": "number"
+        },
+        {
+          "name": "facing",
+          "type": "boolean"
+        },
+        {
+          "name": "movementPower",
+          "type": "number"
+        },
+        {
+          "name": "movementType",
+          "type": "string"
+        }
+      ]
+    },
+    "MouseGridBehavior": {
+      "scriptId": "17",
+      "line": 0,
+      "parentBehavior": null,
+      "properties": [
+        {
+          "name": "tileType",
+          "type": "string"
+        }
+      ]
+    },
+    "TileStatusBehavior": {
+      "scriptId": "39",
+      "line": 2,
+      "parentBehavior": null,
+      "properties": []
+    }
+  }
+}
