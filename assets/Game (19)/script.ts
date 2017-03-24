@@ -80,6 +80,11 @@ namespace Game
     
     return null;
   }
+  
+  export function getLocalTeam()
+  {
+    return Teams.RED;
+  }
 }
 
 class UnitManager
@@ -88,11 +93,12 @@ class UnitManager
   static unitList : Array<Sup.Actor> = new Array<Sup.Actor>();
   static movementTiles : Array<Sup.Actor> = new Array<Sup.Actor>();
   
-  public static spawnUnit(x : number, y : number, unitType: string)
+  public static spawnUnit(x : number, y : number, unitType: string, team : number)
   {
     let unit = Sup.appendScene("Units/"+ unitType + "/Prefab")[0];
     unit.setPosition(x + 0.5, y + 0.5);
     unit.setParent(Sup.getActor("Units"));
+    unit.getBehavior(UnitBehavior).setTeam(team);
     this.unitList.push(unit);
   } 
   

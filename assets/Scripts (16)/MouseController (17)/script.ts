@@ -5,9 +5,12 @@ class MouseGridBehavior extends Sup.Behavior {
   selectedUnit : UnitBehavior;
   
   awake() {
-    UnitManager.spawnUnit(7, 4, "Recon");
-    UnitManager.spawnUnit(8, 3, "Mechanized");
-    UnitManager.spawnUnit(13, 7, "Infantry");
+    UnitManager.spawnUnit(7, 5, "Recon", Teams.RED);
+    UnitManager.spawnUnit(8, 5, "Recon", Teams.BLUE);
+    UnitManager.spawnUnit(7, 3, "Mechanized", Teams.RED);
+    UnitManager.spawnUnit(8, 3, "Mechanized", Teams.BLUE);
+    UnitManager.spawnUnit(13, 7, "Infantry", Teams.BLUE);
+    UnitManager.spawnUnit(12, 7, "Infantry", Teams.RED);
     Sup.Input.setMouseVisible(false);
   }
 
@@ -45,8 +48,11 @@ class MouseGridBehavior extends Sup.Behavior {
     if(Sup.Input.wasMouseButtonJustPressed(0))
     {
       if(unit) {
-        unit.displayMoveRange();    
         this.selectedUnit = unit;
+        if(this.selectedUnit.team == Game.getLocalTeam() && this.selectedUnit.canBeControlled)
+        {
+            this.selectedUnit.displayMoveRange();
+        }
       } else {
         //If we are clicking on an empty tile
         if(!Game.isMovementTileAtPos(this.gridPos)) {
@@ -55,7 +61,8 @@ class MouseGridBehavior extends Sup.Behavior {
         } else {
           if(this.selectedUnit != null)
           {
-            this.selectedUnit.moveAlongPath(MoveArrow.currentPath);
+            if(this.selectedUnit.canAct() && this.selectedUnit.team == Game.getLocalTeam())
+              this.selectedUnit.moveAlongPath(MoveArrow.currentPath);
             UnitManager.clearMovementTiles(); 
           }
         }

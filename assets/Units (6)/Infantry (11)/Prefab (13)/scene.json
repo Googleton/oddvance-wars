@@ -40,10 +40,6 @@
               "movementType": {
                 "type": "string",
                 "value": "infantry"
-              },
-              "team": {
-                "type": "number",
-                "value": 1
               }
             }
           },

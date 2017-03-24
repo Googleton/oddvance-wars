@@ -14,6 +14,8 @@ class UnitBehavior extends Sup.Behavior {
   team : number = Teams.RED;
   facing : boolean = true; //True = right, false = left;
   
+  canBeControlled : boolean = false;
+  isExhausted : boolean = false;
   
   //These are specifics, per unit. 
   movementPower : number; //Move range of the unit.
@@ -21,14 +23,6 @@ class UnitBehavior extends Sup.Behavior {
   
   
   awake() {
-    
-    if(this.team == Teams.BLUE)
-    {
-      this.facing = false;
-      this.actor.spriteRenderer.setSprite("Units/Infantry/Sprite_B"); 
-      this.actor.spriteRenderer.setHorizontalFlip(this.facing);
-    }
-    
     this.actor.spriteRenderer.setAnimation("idle");
   }
 
@@ -107,6 +101,7 @@ class UnitBehavior extends Sup.Behavior {
   {
     let pos = path.shift();
     if(pos == null) {
+      this.exhaust();
       this.actor.spriteRenderer.setAnimation("idle");
       this.actor.spriteRenderer.setHorizontalFlip(this.facing);
       return;
@@ -169,5 +164,37 @@ class UnitBehavior extends Sup.Behavior {
       return 999;
   }
   
+  exhaust()
+  {
+    this.actor.spriteRenderer.setColor(new Sup.Color(0x858585));
+    this.isExhausted = true;
+  }
+  
+  stopExhaust()
+  {
+    this.actor.spriteRenderer.setColor(new Sup.Color(0xFFFFFF));
+    this.isExhausted = false;
+  }
+  
+  canAct() : boolean
+  {
+    if(!this.isExhausted && this.canBeControlled)
+      return true;
+    else
+      return false;
+  }
+  
+  setTeam(team : number) 
+  {
+    this.team = team;
+    if(this.team == Teams.BLUE)
+    {
+      this.facing = false;
+      this.actor.spriteRenderer.setSprite("Units/" + this.unitString + "/Sprite_B"); 
+      this.actor.spriteRenderer.setHorizontalFlip(this.facing);
+    }
+    
+    this.actor.spriteRenderer.setAnimation("idle");
+  }
 }
 Sup.registerBehavior(UnitBehavior);

@@ -18,6 +18,14 @@
           "type": "boolean"
         },
         {
+          "name": "canBeControlled",
+          "type": "boolean"
+        },
+        {
+          "name": "isExhausted",
+          "type": "boolean"
+        },
+        {
           "name": "movementPower",
           "type": "number"
         },
@@ -43,6 +51,36 @@
       "line": 2,
       "parentBehavior": null,
       "properties": []
+    },
+    "ButtonBehavior": {
+      "scriptId": "54",
+      "line": 0,
+      "parentBehavior": null,
+      "properties": [
+        {
+          "name": "mouseOver",
+          "type": "boolean"
+        },
+        {
+          "name": "callback",
+          "type": "string"
+        }
+      ]
+    },
+    "MatchHandlerBehavior": {
+      "scriptId": "55",
+      "line": 6,
+      "parentBehavior": null,
+      "properties": [
+        {
+          "name": "currentTurn",
+          "type": "number"
+        },
+        {
+          "name": "day",
+          "type": "number"
+        }
+      ]
     }
   }
 }

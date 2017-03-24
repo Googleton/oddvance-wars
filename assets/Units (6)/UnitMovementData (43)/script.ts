@@ -18,8 +18,6 @@ module MovementData {
   export function getChoices(key: string, unitType: string): { [key: string]: string } { return <any>get(key, unitType); }
 }
 
-Sup.log(MovementData.types);
-
 MovementData.types.infantry = {
   "plain":    1,
   "road":     1,
