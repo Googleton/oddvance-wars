@@ -1,5 +1,5 @@
 {
-  "nextEntryId": 63,
+  "nextEntryId": 70,
   "nodes": [
     {
       "id": "20",
@@ -297,6 +297,45 @@
         {
           "id": "54",
           "name": "Button",
+          "type": "script"
+        }
+      ]
+    },
+    {
+      "id": "63",
+      "name": "Widgets",
+      "type": null,
+      "children": [
+        {
+          "id": "64",
+          "name": "Action Menu",
+          "type": null,
+          "children": [
+            {
+              "id": "65",
+              "name": "Prefab",
+              "type": "scene"
+            },
+            {
+              "id": "66",
+              "name": "Actions",
+              "type": "sprite"
+            },
+            {
+              "id": "67",
+              "name": "Background",
+              "type": "sprite"
+            },
+            {
+              "id": "69",
+              "name": "Action",
+              "type": "scene"
+            }
+          ]
+        },
+        {
+          "id": "68",
+          "name": "Widget Builder",
           "type": "script"
         }
       ]

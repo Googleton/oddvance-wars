@@ -79,6 +79,10 @@
         {
           "name": "day",
           "type": "number"
+        },
+        {
+          "name": "isPaused",
+          "type": "boolean"
         }
       ]
     }

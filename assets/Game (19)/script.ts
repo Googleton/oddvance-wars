@@ -85,6 +85,11 @@ namespace Game
   {
     return Teams.RED;
   }
+  
+  export function isPaused() : boolean
+  {
+    return Sup.getActor("GameHandler").getBehavior(MatchHandlerBehavior).isPaused;
+  }
 }
 
 class UnitManager

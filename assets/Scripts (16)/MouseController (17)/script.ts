@@ -15,6 +15,8 @@ class MouseGridBehavior extends Sup.Behavior {
   }
 
   update() {
+    if(Sup.getActor("GameHandler").getBehavior(MatchHandlerBehavior).isPaused)
+      return;
     let oldX = this.gridPos.x;
     let oldY = this.gridPos.y;
     
@@ -45,7 +47,7 @@ class MouseGridBehavior extends Sup.Behavior {
   {
     let vec = hit.point;
     let unit = Game.getUnitAtPositon(this.gridPos.x, this.gridPos.y);
-    if(Sup.Input.wasMouseButtonJustPressed(0))
+    if(Sup.Input.wasMouseButtonJustPressed(0) && !Game.isPaused())
     {
       if(unit) {
         this.selectedUnit = unit;
@@ -61,8 +63,10 @@ class MouseGridBehavior extends Sup.Behavior {
         } else {
           if(this.selectedUnit != null)
           {
-            if(this.selectedUnit.canAct() && this.selectedUnit.team == Game.getLocalTeam())
+            if(this.selectedUnit.canAct() && this.selectedUnit.team == Game.getLocalTeam()) {
+              this.selectedUnit.beforeMovePosition = this.selectedUnit.gridPosition;
               this.selectedUnit.moveAlongPath(MoveArrow.currentPath);
+            }
             UnitManager.clearMovementTiles(); 
           }
         }

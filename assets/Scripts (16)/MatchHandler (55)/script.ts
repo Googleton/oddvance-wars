@@ -8,6 +8,8 @@ class MatchHandlerBehavior extends Sup.Behavior {
   
   currentTurn : number = Teams.RED;
   day : number = 1;
+  //Enabled to stop player from doing certain actions. Mostly menu-related
+  isPaused : boolean = false;
   
   awake() {
     this.setUnitState();

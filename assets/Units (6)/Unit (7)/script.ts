@@ -9,6 +9,7 @@ enum Teams
 class UnitBehavior extends Sup.Behavior {
   
   gridPosition : GridPosition = new GridPosition(0, 0);
+  beforeMovePosition : GridPosition = new GridPosition(0, 0);
   //Have to use this since SuperPowers doesn't support enum in editor
   unitString : string;
   team : number = Teams.RED;
@@ -34,6 +35,7 @@ class UnitBehavior extends Sup.Behavior {
   {
     this.gridPosition.x = Math.floor(vec.x);
     this.gridPosition.y = Math.floor(vec.y);
+    this.beforeMovePosition = this.gridPosition;
   }
   
   displayMoveRange()
@@ -104,16 +106,12 @@ class UnitBehavior extends Sup.Behavior {
       this.exhaust();
       this.actor.spriteRenderer.setAnimation("idle");
       this.actor.spriteRenderer.setHorizontalFlip(this.facing);
+      
+      //Do action dialog
+      
       return;
     }
     
-    //Temp
-    //this.actor.setPosition(pos.x + 0.5, pos.y + 0.5);
-    
-    //Idea/solution :
-    //Figure out the direction
-    //Play animation for path segment
-    //Lerp to the position
     let direction = Game.getCardinalDirectionFromTo(this.gridPosition, new GridPosition(pos.x, pos.y));
     let movement = {x: 0, y : 0};
     let delay = 250;
